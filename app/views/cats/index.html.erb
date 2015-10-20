@@ -3,7 +3,10 @@
 <ul id="cats">
   <% @cats.each do |cat| %>
     <li>
-      <%= link_to cat.name, cat_path(cat.id) %>
+      <%= link_to cat.name, cat_url(cat) %>
     </li>
+    <p>
   <% end %>
 </ul>
+<br>
+<p><%= link_to "Make a cat!", new_cat_url %></p>

@@ -14,10 +14,17 @@ class Cat < ActiveRecord::Base
   message: "sex needs to be 'M' or 'F'" }
 
   def age
-    mm = self.birth_date.to_s[0..1]
-    dd = self.birth_date.to_s[2..3]
-    yyyy = self.birth_date.to_s[4..7]
+    mm = self.birth_date.to_s[-8..-7]
+    dd= self.birth_date.to_s[-6..-5]
+    yyyy = self.birth_date.to_s[-4..-1]
     "#{mm}/#{dd}/#{yyyy}"
+  end
+
+  def sexm
+    self.sex == "M" ? "checked='checked'" :
+  end
+  def sexf
+    self.sex == "F" ? "checked='checked'" :
   end
 
 end

@@ -1,18 +1,19 @@
-<h1 align="center">99Cats - New</h1>
+<h1 align="center">99Cats - Edit</h1>
 
 <form action="http://localhost:3000/cats" method="post">
+  <input type="hidden" name="_method" value="patch">
   <p>Name:</p>
   <p>
-    <input type="text" name="cat[name]">
+    <input type="text" name="cat[name]" value=" <%=@cat.name%>">
   </p>
   <p>Sex:</p>
-    <input type="radio" name="cat[sex]" value="M"> Male
-    <input type="radio" name="cat[sex]" value="F"> Female
+    <input type="radio" name="cat[sex]" value="M" <%= @cat.sexm %>> Male
+    <input type="radio" name="cat[sex]" value="F" <%= @cat.sexf %>> Female
   </p>
   <p>Color:</p>
   <p>
     <select name="cat[color]">
-      <option>Choose a color:</option>
+      <option><%= @cat.color %></option>
       <option value="black">Black</option>
       <option value="white">White</option>
       <option value="grey">Grey</option>
@@ -22,15 +23,15 @@
   </p>
     <p>Birthday:</p>
     <p>
-      <input type="date" name="cat[age]">
+      <input type="date" name="cat[age]" value="<%= @cat.birth_date %>">
     </p>
     <p>Description:</p>
   <p>
     <textarea name="cat[description]"
-    rows="10" cols="50">What's your cat like?</textarea>
+    rows="10" cols="50"> <%= @cat.description %></textarea>
   </p>
 <p >
-  <input type="submit" value="CREATE A CAT">
+  <input type="submit" value="EDIT CAT">
 </p>
 </form>
 <%= link_to 'Back to all cats', cats_url %>

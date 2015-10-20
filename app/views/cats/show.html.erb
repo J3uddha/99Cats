@@ -6,7 +6,7 @@
     <td> <%= @cat.name %></td>
   </tr>
   <tr>
-    <td>Age:</td>
+    <td>Birthday:</td>
     <td><%= @cat.age %></td>
   </tr>
   <tr>
@@ -22,4 +22,6 @@
       <td><%= @cat.description %></td>
   </tr>
 </table>
-<%= link_to 'Back to all cats', cats_path %>
+
+<p><%= link_to 'Edit this cat!', edit_cat_url(@cat) %></p>
+<p><%= link_to 'Back to all cats', cats_url %></p>

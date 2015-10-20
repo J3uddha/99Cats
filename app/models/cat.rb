@@ -21,10 +21,11 @@ class Cat < ActiveRecord::Base
   end
 
   def sexm
-    self.sex == "M" ? "checked='checked'" :
+    self.sex == "M" ? "checked='checked'" : ""
   end
+
   def sexf
-    self.sex == "F" ? "checked='checked'" :
+    self.sex == "F" ? "checked='checked'" : ""
   end
 
 end

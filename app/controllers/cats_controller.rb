@@ -9,27 +9,28 @@ class CatsController < ApplicationController
   end
 
   def new
+    @cat = Cat.new
     render :new
   end
 
   def edit
     @cat = Cat.find_by_id(params[:id])
-    @cat.
     render :edit
   end
 
   def create
     @cat = Cat.new(cat_params)
-      if @cat.save
-        render :show
-      else
-        raise error "couldn't make cat"
-      end
-
+    if @cat.save
+      render :show
+    else
+      render json: @cat.errors.full_messages, status: :unprocessable_entity
+    end
   end
 
   private
 
-def cat_params
-  params.require(:cat).permit(:name, :birth_date, :color, :sex, :description)
+  def cat_params
+    params.require(:cat).permit(:name, :birth_date, :color, :sex, :description)
+  end
+
 end

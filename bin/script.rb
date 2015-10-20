@@ -1,0 +1,5 @@
+# c = Cat.new(name: "Tiga", color:"black", sex:"M",birth_date:"11011990")
+unicorn = Cat.new(name: "Unicorn", color:"white", sex:"F",birth_date:"12011990")
+mope = Cat.new(name: "Mope", color:"grey", sex:"M",birth_date:"01011990")
+bear = Cat.new(name: "Bear", color:"brown", sex:"M",birth_date:"02011990")
+poptart = Cat.new(name: "PopTart", color:"nyan", sex:"F",birth_date:"03011990")

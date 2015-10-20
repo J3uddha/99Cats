@@ -1,0 +1,9 @@
+<h1 align="center">99Cats</h1>
+
+<ul id="cats">
+  <% @cats.each do |cat| %>
+    <li>
+      <%= link_to cat.name, cat_path(cat.id) %>
+    </li>
+  <% end %>
+</ul>

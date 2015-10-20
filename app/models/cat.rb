@@ -6,6 +6,7 @@ class Cat < ActiveRecord::Base
       "brown",
       "nyan"
   ]
+
   validates :id, uniqueness: true
   validates :birth_date, :color, :name, :sex, presence: true
   validates :color, inclusion: { in: COLORS,
@@ -14,6 +15,7 @@ class Cat < ActiveRecord::Base
   message: "sex needs to be 'M' or 'F'" }
 
   def age
+    # (Time.now.to_date - self.birth_date)./365
     mm = self.birth_date.to_s[-8..-7]
     dd= self.birth_date.to_s[-6..-5]
     yyyy = self.birth_date.to_s[-4..-1]

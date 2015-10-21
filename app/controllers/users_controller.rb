@@ -6,13 +6,15 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    flash.notice = "Success"
-    if @user.save
 
+    if @user.save
+      flash[:notices] = "Thanks for signing up! Welcome :)"
+      redirect_to cats_url
     else
-      errors.add("base", "Please enter a valid username and password.")
+      fail
+      @user.errors.add("base", "Please enter a valid username and password.")
       flash[:errors] = @user.errors.full_messages
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

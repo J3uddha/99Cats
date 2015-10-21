@@ -17,17 +17,19 @@ class CatRentalRequest < ActiveRecord::Base
 
   def overlapping_requests
     overlapping_requests = CatRentalRequest
-      .where("(:id IS NULL) OR (cat_rental_request.id != :id)", id: self.id)
-      .where(":cat_id = ?", self.cat_id)
-      .where(":start_date < ? && :end_date > ?", self.end_date, self.start_date)
+      .where("(:id IS NULL) OR (id != :id)", id: self.id)
+      .where("cat_id = ?", self.cat_id)
+      .where(<<-SQL, start_date: start_date, end_date: end_date)
+        (start_date < :end_date) AND (end_date > :start_date) 
+SQL
   end
 
   def overlapping_approved_requests
-    overlapping_approved_requests = CatRentalRequest
-      .where("status = 'APPROVED'")
-      .where("start_date < ? && end_date > ?", self.end_date, self.start_date)
+    overlapping_requests.where("status = 'APPROVED'")
+  end
 
-    !overlapping_approved_times.empty?
+  def overlapping_pending_requests
+    overlapping_requests.where("status = 'PENDING'")
   end
 
 end

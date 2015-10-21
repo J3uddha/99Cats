@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
 
+  before_action :redirect_signed_in_user, only: [:new]
+
+  def redirect_signed_in_user
+    redirect_to cats_url
+  end
+
   def new
     render :new
   end
@@ -9,6 +15,8 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notices] = ["Thanks for signing up! Welcome :)"]
+      log_in!(@user)
+
       redirect_to cats_url
     else
       @user.errors.add("base", "Please enter a valid username and password")
@@ -16,7 +24,6 @@ class UsersController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
 
   private
 

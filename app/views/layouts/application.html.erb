@@ -6,12 +6,33 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %> -->
 </head>
-<body>
+<body> 
 
 <% flash[:notices].nil? || flash[:notices].each do |notice| %>
   <%= notice %><br>
+  <hr>
 <% end %>
-<hr>
+
+
+<% if current_user %>
+  <h6>Logged in as: <%= current_user.user_name %>
+    <form action="<%= session_url %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button action="submit">
+        Log Out
+      </button>
+    </form>
+  </h6>
+<% else %>
+    <form action="<%= new_session_url %>" method="get">
+      <h6>Guest
+        <button type="submit">Log In</button>
+      </h6>
+    </form>
+
+<% end
+ %>
+
 <%= yield %>
 
 </body>

@@ -8,7 +8,10 @@
 </head>
 <body>
 
-<%= flash[:notices] %>
+<% flash[:notices].nil? || flash[:notices].each do |notice| %>
+  <%= notice %><br>
+<% end %>
+<hr>
 <%= yield %>
 
 </body>

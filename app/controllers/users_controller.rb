@@ -8,12 +8,11 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
 
     if @user.save
-      flash[:notices] = "Thanks for signing up! Welcome :)"
+      flash[:notices] = ["Thanks for signing up! Welcome :)"]
       redirect_to cats_url
     else
-      fail
-      @user.errors.add("base", "Please enter a valid username and password.")
-      flash[:errors] = @user.errors.full_messages
+      @user.errors.add("base", "Please enter a valid username and password")
+      flash[:notices] = @user.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end
